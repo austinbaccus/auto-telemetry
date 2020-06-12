@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30128.74
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutoTelemetryWeb", "AutoTelemetryWeb\AutoTelemetryWeb.csproj", "{7A2EBA46-3AA0-43FF-98E0-57C2140ACD3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7A2EBA46-3AA0-43FF-98E0-57C2140ACD3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A2EBA46-3AA0-43FF-98E0-57C2140ACD3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A2EBA46-3AA0-43FF-98E0-57C2140ACD3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A2EBA46-3AA0-43FF-98E0-57C2140ACD3B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8C256F4A-C2E1-4488-B4D9-52930E102923}
+	EndGlobalSection
+EndGlobal
