@@ -1,8 +1,23 @@
+/*************************************************************************************************
+    OBD-II_PIDs TEST CODE
+    LOOVEE @ JUN24, 2017
+    
+    Query
+    send id: 0x7df
+      dta: 0x02, 0x01, PID_CODE, 0, 0, 0, 0, 0
+      
+    Response
+    From id: 0x7E9 or 0x7EA or 0x7EB
+      dta: len, 0x41, PID_CODE, byte0, byte1(option), byte2(option), byte3(option), byte4(option)
+      
+    https://en.wikipedia.org/wiki/OBD-II_PIDs
+    Input a PID, then you will get reponse from vehicle, the input should be end with '\n'
+***************************************************************************************************/
+
 #include <SPI.h>
 #include <mcp_can.h>
 #include "mcp_can.h"
 #include <mcp_can_dfs.h>
-
 
 const int SPI_CS_PIN = 9;
 

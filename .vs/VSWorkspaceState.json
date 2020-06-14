@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\AutoTelemetry",
-    "\\AutoTelemetry\\AutoTelemetryWeb\\Pages"
+    "\\AutoTelemetry\\Arduino",
+    "\\AutoTelemetry\\Arduino\\program"
   ],
-  "SelectedNode": "\\AutoTelemetry\\AutoTelemetryWeb",
+  "SelectedNode": "\\AutoTelemetry\\Arduino\\program\\program.ino",
   "PreviewInSolutionExplorer": false
 }
