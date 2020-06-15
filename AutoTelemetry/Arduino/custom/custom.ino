@@ -45,11 +45,11 @@ void readResponse()
 
     // 41 0C 0F A0
     // 0x0FA0 = 4000
-    // 4000 / 4 = 1000 rpm
+    // 
     
     if (canID == 0x7DF)           //reading only our beloved 0xF1 message
     {
-      Serial.print(canID);
+      Serial.print(canID, HEX);
       Serial.print("\t");
       for (int i = 0; i < len; i++)
       {
