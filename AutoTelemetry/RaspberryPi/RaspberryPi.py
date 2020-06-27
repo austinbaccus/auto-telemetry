@@ -59,11 +59,15 @@ def iothub_client_telemetry_run():
 
         # Keep reading RPM data and sending it to the IoT Hub
         while True:
+            # Get the data
             rpm = get_rpm()
+            print ("Getting RPM...")
 
             # Send the message
             print ("Sending message: {}".format(rpm))
             client.send_message(rpm)
+
+            # Send confirmation
             print ("Message successfully sent")
 
             time.sleep(1)
