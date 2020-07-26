@@ -2,8 +2,10 @@
   "ExpandedNodes": [
     "",
     "\\AutoTelemetry",
-    "\\AutoTelemetry\\Arduino"
+    "\\AutoTelemetry\\Arduino",
+    "\\AutoTelemetry\\Hub",
+    "\\AutoTelemetry\\RaspberryPi"
   ],
-  "SelectedNode": "\\AutoTelemetry\\Arduino\\program",
+  "SelectedNode": "\\AutoTelemetry\\Arduino\\Arduino.ino",
   "PreviewInSolutionExplorer": false
 }
