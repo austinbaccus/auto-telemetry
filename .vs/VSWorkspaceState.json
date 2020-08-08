@@ -4,8 +4,8 @@
     "\\AutoTelemetry",
     "\\AutoTelemetry\\Arduino",
     "\\AutoTelemetry\\Hub",
-    "\\AutoTelemetry\\RaspberryPi"
+    "\\AutoTelemetry\\Laptop"
   ],
-  "SelectedNode": "\\AutoTelemetry\\Arduino\\Arduino.ino",
+  "SelectedNode": "\\AutoTelemetry\\Laptop\\main.py",
   "PreviewInSolutionExplorer": false
 }
