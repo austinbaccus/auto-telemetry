@@ -1,0 +1,19 @@
+{
+  "version": 2,
+  "dgSpecHash": "ELrJ+jzPsgNhrILkCO8JOUsKhtOTkpDUpJDaKx+SFKrBwucXZibtVz9/Y6wnOV6aAipUAy16oEAHY+bcvDBMJA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\gunra\\source\\repos\\AutoTelemetry\\AutoTelemetry\\LaptopCs\\LaptopCs.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\gunra\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
+    "C:\\Users\\gunra\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\gunra\\.nuget\\packages\\runtime.linux-arm.runtime.native.system.io.ports\\4.7.0\\runtime.linux-arm.runtime.native.system.io.ports.4.7.0.nupkg.sha512",
+    "C:\\Users\\gunra\\.nuget\\packages\\runtime.linux-arm64.runtime.native.system.io.ports\\4.7.0\\runtime.linux-arm64.runtime.native.system.io.ports.4.7.0.nupkg.sha512",
+    "C:\\Users\\gunra\\.nuget\\packages\\runtime.linux-x64.runtime.native.system.io.ports\\4.7.0\\runtime.linux-x64.runtime.native.system.io.ports.4.7.0.nupkg.sha512",
+    "C:\\Users\\gunra\\.nuget\\packages\\runtime.native.system.io.ports\\4.7.0\\runtime.native.system.io.ports.4.7.0.nupkg.sha512",
+    "C:\\Users\\gunra\\.nuget\\packages\\runtime.osx-x64.runtime.native.system.io.ports\\4.7.0\\runtime.osx-x64.runtime.native.system.io.ports.4.7.0.nupkg.sha512",
+    "C:\\Users\\gunra\\.nuget\\packages\\system.io.ports\\4.7.0\\system.io.ports.4.7.0.nupkg.sha512",
+    "C:\\Users\\gunra\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
+    "C:\\Users\\gunra\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}
