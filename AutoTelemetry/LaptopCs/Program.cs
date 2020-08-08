@@ -103,6 +103,7 @@ namespace LaptopCs
         static void SaveTelemetryToFile()
         {
             string datetime = DateTime.Today.ToString("s");
+            datetime = datetime.Replace('.', '_').Replace(':', '-');
             string path = @"C:\Users\gunra\source\repos\AutoTelemetry\AutoTelemetry\Laptop\" + datetime + ".csv";
             File.AppendAllText(path, csv.ToString());
         }
