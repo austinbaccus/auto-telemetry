@@ -39,8 +39,8 @@ void setup()
 void loop()
 {
     // reset our CAN message variables
-    rpm_app = 0;
-    speed_app = 0;
+    //rpm_app = 0;
+    //speed_app = 0;
     
     // if we just received a message from the CAN and haven't sent another request yet...
     if (!sent_rpm_rq)
