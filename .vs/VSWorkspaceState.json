@@ -3,9 +3,11 @@
     "",
     "\\AutoTelemetry",
     "\\AutoTelemetry\\Arduino",
+    "\\AutoTelemetry\\Arduino\\AllTelemetry.ino",
     "\\AutoTelemetry\\Hub",
-    "\\AutoTelemetry\\Laptop"
+    "\\AutoTelemetry\\Laptop",
+    "\\AutoTelemetry\\LaptopCs"
   ],
-  "SelectedNode": "\\AutoTelemetry\\Laptop\\main.py",
+  "SelectedNode": "\\AutoTelemetry\\LaptopCs\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
