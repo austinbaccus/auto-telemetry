@@ -4,6 +4,7 @@
     "\\AutoTelemetry",
     "\\AutoTelemetry\\Arduino",
     "\\AutoTelemetry\\Arduino\\AllTelemetry.ino",
+    "\\AutoTelemetry\\Arduino\\Speed",
     "\\AutoTelemetry\\Hub",
     "\\AutoTelemetry\\Laptop",
     "\\AutoTelemetry\\LaptopCs"
