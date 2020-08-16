@@ -50,7 +50,7 @@ void loop()
         {
             switch(buf[2]) // If you're requesting only RPM...
             {
-                case 0x0C: //RPM
+                case 0x0C: // rpm
                     rpm_byte = (uint16_t)(buf[3] << 8) + (buf[3]);
                     rpm_app = (rpm_byte / 4);
                     Serial.println(rpm_app);

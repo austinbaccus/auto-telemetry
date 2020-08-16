@@ -15,6 +15,7 @@ namespace LaptopCs
             // initialize stuff here
             Init();
 
+            // ask the user whether they'd like to run the telelemtry logger or the 0-60 stopwatch
             Console.WriteLine("  [1] Speed logger\n  [2] 0-60 Stopwatch\n");
             int selection = 1;
 
@@ -55,8 +56,7 @@ namespace LaptopCs
     
     public class TelemetryLogger
     {
-        StringBuilder csv;
-        Timer timer1;
+        StringBuilder csv; // used to contain the text that we'll eventually write to the file
         Stopwatch sw = new Stopwatch();
         TimeSpan ts;
         SerialPort _serialPort;
@@ -64,6 +64,7 @@ namespace LaptopCs
         private string msg;
         private string elapsedTime;
         private bool isDataSaved;
+        private string serialPort = "COM7"; // replace this with whatever serial port you're using to connect with the Arduino
 
         public TelemetryLogger()
         {
@@ -73,7 +74,7 @@ namespace LaptopCs
             isDataSaved = false;
 
             // open serial connection
-            _serialPort = new SerialPort("COM7", 115200);
+            _serialPort = new SerialPort(serialPort, 115200);
             _serialPort.Open();
 
             // stop logging delegate
@@ -88,8 +89,9 @@ namespace LaptopCs
             Console.Write("Press 'enter' to start logging data. Press Ctrl-C to stop logging data. ");
             Console.ReadLine();
 
-            Timer timer = new Timer(100);
-            timer.AutoReset = true; // the key is here so it repeats
+            // execute the 'LogCANMessage()' function every 0.1 seconds
+            Timer timer = new Timer(100); // 100 milliseconds = 0.1 seconds
+            timer.AutoReset = true; 
             timer.Elapsed += LogCANMessage;
             timer.Start();
         }
@@ -106,11 +108,12 @@ namespace LaptopCs
                 ts = sw.Elapsed;
                 elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}", ts.Hours, ts.Minutes, ts.Seconds, ts.Milliseconds / 10);
 
-                // read in the data from the CAN
+                // read in the data from the CAN/Arduino
                 var task = Task.Run(() => GetCANMessage());
 
                 if (task.Wait(TimeSpan.FromSeconds(10)))
                 {
+                    // this is the message we recieved from the CAN/Arduino. Right now, this is set to be your vehicle's speed
                     msg = task.Result;
 
                     // print CAN message to the console
@@ -131,12 +134,18 @@ namespace LaptopCs
                 SaveTelemetryToFile();
         }
 
+        /// <summary>
+        /// Gets the latest CAN data from the Arduino.
+        /// </summary>
         private string GetCANMessage()
         {
             // read in the latest serial input from the micro-controller
             return _serialPort.ReadLine();
         }
 
+        /// <summary>
+        /// Records the latest CAN message to the StringBuilder object we use to store telemetry.
+        /// </summary>
         private void LogCANMessage(object sender, EventArgs e)
         {
             ts = sw.Elapsed;
@@ -146,11 +155,23 @@ namespace LaptopCs
             csv.Append(elapsedTime + "," + msg);
         }
 
+        /// <summary>
+        /// Saves the telemetry data to a unique file in this directory.
+        /// </summary>
         private void SaveTelemetryToFile()
         {
             string datetime = DateTime.Today.ToString("s");
             datetime = datetime.Replace('.', '_').Replace(':', '-');
-            string path = @"C:\Users\gunra\source\repos\AutoTelemetry\AutoTelemetry\Laptop\" + datetime + ".csv";
+            int runNumber = 0;
+            string path = @".\" + datetime + "_" + runNumber + ".csv";
+
+            // if this current filename is already taken, increment the file number and try again until we have a unique filename
+            while (File.Exists(path))
+            {
+                runNumber++;
+                path = @".\" + datetime + "_" + runNumber + ".csv";
+            }
+
             File.AppendAllText(path, this.csv.ToString());
         }
     }
@@ -161,11 +182,12 @@ namespace LaptopCs
 
         private string msg;
         private string elapsedTime;
+        private string serialPort = "COM7"; // chamge this to be whatever serial port is connected to the Arduino
 
         public AccelerationStopwatch()
         {
             // open serial connection
-            _serialPort = new SerialPort("COM7", 115200);
+            _serialPort = new SerialPort(serialPort, 115200);
             _serialPort.Open();
         }
 
@@ -174,9 +196,14 @@ namespace LaptopCs
             while (true)
             {
                 BeginRun();
+                Console.WriteLine("Press 'enter' to start a new run");
+                Console.ReadLine();
             }
         }
 
+        /// <summary>
+        /// Begins a new 0-60 MPH run. This function will record how long it takes the car to hit the target speed.
+        /// </summary>
         private void BeginRun()
         {
             Stopwatch sw = new Stopwatch();
@@ -184,6 +211,8 @@ namespace LaptopCs
 
             while (true)
             {
+                int targetSpeed = 96; // this is the speed you're trying to reach. in a 0-60 MPH test, that speed is 60 MPH. 96 KM/H = 60 MPH.
+                int startingSpeed = 5; // this is the speed that you start recording at. traditionally, 0-60 tests actually start with a 1-foot rollout. according to Car & Driver, this is when you hit approximately 3 MPH (or 5 KMH).
                 int speed = GetSpeed();
 
                 // 0 mph
@@ -196,7 +225,7 @@ namespace LaptopCs
                     sw.Reset();
                 }
                 // moving
-                else if (!runInProgress && speed > 0 && speed < 96)
+                else if (!runInProgress && speed > 0 && speed < targetSpeed)
                 {
                     // the run has started
                     runInProgress = true;
@@ -205,7 +234,7 @@ namespace LaptopCs
                     sw.Start();
                 }
                 // 60 mph
-                else if (speed >= 96)
+                else if (!runInProgress && speed >= targetSpeed)
                 {
                     // stop the stopwatch
                     sw.Stop();
@@ -223,6 +252,9 @@ namespace LaptopCs
             }
         }
 
+        /// <summary>
+        /// Gets the ccar's current speed in kilometers per hour.
+        /// </summary>
         private int GetSpeed()
         {
             int speed = 0;
@@ -242,6 +274,9 @@ namespace LaptopCs
             return speed;
         }
 
+        /// <summary>
+        /// Gets the latest CAN data from the Arduino.
+        /// </summary>
         private string GetCANMessage()
         {
             // read in the latest serial input from the micro-controller

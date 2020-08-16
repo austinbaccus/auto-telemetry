@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ELrJ+jzPsgNhrILkCO8JOUsKhtOTkpDUpJDaKx+SFKrBwucXZibtVz9/Y6wnOV6aAipUAy16oEAHY+bcvDBMJA==",
+  "dgSpecHash": "WBnhqWPTOfeLShYAx4dtsVQRQFCOsNyVYj1K7fMF4OpNqdALqB540YwHKmGhoDi0G4UHdFsbC3lL3SLktCyWoA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gunra\\source\\repos\\AutoTelemetry\\AutoTelemetry\\LaptopCs\\LaptopCs.csproj",
+  "projectFilePath": "C:\\Users\\gunra\\source\\repos\\AutoTelemetry\\AutoTelemetry\\LaptopCs\\Laptop.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\gunra\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\gunra\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",

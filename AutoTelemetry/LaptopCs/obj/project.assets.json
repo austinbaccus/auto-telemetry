@@ -437,9 +437,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\gunra\\source\\repos\\AutoTelemetry\\AutoTelemetry\\LaptopCs\\LaptopCs.csproj",
-      "projectName": "LaptopCs",
-      "projectPath": "C:\\Users\\gunra\\source\\repos\\AutoTelemetry\\AutoTelemetry\\LaptopCs\\LaptopCs.csproj",
+      "projectUniqueName": "C:\\Users\\gunra\\source\\repos\\AutoTelemetry\\AutoTelemetry\\LaptopCs\\Laptop.csproj",
+      "projectName": "Laptop",
+      "projectPath": "C:\\Users\\gunra\\source\\repos\\AutoTelemetry\\AutoTelemetry\\LaptopCs\\Laptop.csproj",
       "packagesPath": "C:\\Users\\gunra\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\gunra\\source\\repos\\AutoTelemetry\\AutoTelemetry\\LaptopCs\\obj\\",
       "projectStyle": "PackageReference",
