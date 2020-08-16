@@ -1,10 +1,19 @@
 # AutoTelemetry
-AutoTelemetry is a project with the goal of transmitting real-time telemetry from my 2012 Audi A6 3.0 to the cloud, and from the cloud to client devices via a web app. This will allow anyone with access to the web app to see real-time telemetry (RPM, gear, speed, etc.) for my car. 
+AutoTelemetry allows you to record your car's telemetry while you drive. You can save your telemetry data to a CSV file or time your car's 0-60 MPH run.
+
 ## Hardware
-To get data from the car I use a DB9-RS32 cable. This cable is connected to the car's OBDII port on one end and an Arduino CAN-BUS shield on the other end. This shield is conencted to an Arduino Uno. This Arduino ultimately reads CAN messages from the OBDII port, and sends the data to a Raspberry Pi 3B+ via serial cable. The Pi then translates the CAN message into readable data for later use. The Pi connects to the internet using a mobile hotspot, which allows it to send the car's telemtry within the CAN messages to an IoT Hub hosted in Azure.
-## Cloud
-As the Azure IoT Hub recieves telemetry from the car, it broadcasts that data to any client services that are listening. 
-## Web App
-The AutoTelemetry web app is one of the clients that listens for new data coming in from the IoT Hub. From here, the car's telemetry is visualized with fancy graphs and charts.
-## The Data
-The car's telemetry is displayed and saved in multiple places along the data pipeline. After the Pi translates the CAN message the data is saved data locally. This allows me to review my car's latest telemetry from a desktop in case I can't connect the Pi to the Cloud.
+1. [DB9-R2S32 cable](https://www.amazon.com/dp/B01ETRINYO/ref=cm_sw_em_r_mt_dp_jWzoFb6F0DSE8)
+2. [Arduino Uno + serial cable](https://www.amazon.com/dp/B01EWOE0UU/ref=cm_sw_em_r_mt_dp_sZzoFbJMW9MM0)
+3. [Arduino CAN-BUS shield](https://www.amazon.com/dp/B00NQVH666/ref=cm_sw_em_r_mt_dp_zYzoFb48E4WSF)
+4. Laptop (unless you want to hookup your desktop PC inside the car)
+
+## Setup
+1. Download the code. Upload the \Arduino\Speed code to you Arduino Uno. This is most easily done using the [Arduino IDE](https://www.arduino.cc/en/Main/Software).
+2. Connect the Arduino Uno and the Arduino CAN-BUS shield together.
+3. Plug in the DB9-RS32 cable into your car's OBD-II port. 
+4. Plug in the other end of the DB9-RS232 cable into your Arduino CAN-BUS shield.
+5. Connect the Arduino to your Laptop with the serial cable.
+6. Use the Arduino IDE to see which port the serial cable is connected to ("COM7" is the default).
+7. Turn the car on.
+8. Start the laptop program.
+9. Start testing!
