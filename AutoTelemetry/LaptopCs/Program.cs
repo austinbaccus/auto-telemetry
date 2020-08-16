@@ -171,81 +171,75 @@ namespace LaptopCs
 
         public void Loop()
         {
-            Console.WriteLine("Press 'q' + 'enter' to quit, press any other key + 'enter' to start the 0-60 run");
             while (true)
             {
-                string input = Console.ReadLine();
-
-                if (input == "q")
-                {
-                    break;
-                }
-                else
-                {
-                    BeginRun();
-                }
+                BeginRun();
             }
         }
 
         private void BeginRun()
         {
-
             Stopwatch sw = new Stopwatch();
-            bool runStarted = false;
+            bool runInProgress = false;
 
-            // enter the main loop
             while (true)
             {
-                // read in the data from the CAN
-                var task = Task.Run(() => GetCANMessage());
+                int speed = GetSpeed();
 
-                if (task.Wait(TimeSpan.FromSeconds(10)))
+                // 0 mph
+                if (runInProgress && speed <= 0)
                 {
-                    msg = task.Result;
+                    // the car has come to a stop
+                    runInProgress = false;
+
+                    // reset stopwatch back to 0.00s
+                    sw.Reset();
                 }
-                else
+                // moving
+                else if (!runInProgress && speed > 0 && speed < 96)
                 {
-                    // it's been a while since we got the last message, the car is probably turned off at this point
-                    // in this case, we can exit the loop and save the data to the file
-                    break;
+                    // the run has started
+                    runInProgress = true;
+
+                    // start the stopwatch
+                    sw.Start();
                 }
-
-                int speed = 0;
-                int.TryParse(msg, out speed);
-
-                if (!runStarted)
+                // 60 mph
+                else if (speed >= 96)
                 {
-                    if (speed > 0)
-                    {
-                        // run has begun, car is now moving
-                        runStarted = true;
+                    // stop the stopwatch
+                    sw.Stop();
 
-                        // start the stopwatch
-                        sw.Start();
-                    }
+                    // calculate the time
+                    TimeSpan ts = sw.Elapsed;
+                    elapsedTime = String.Format("{0:00}.{1:00}", ts.Seconds, ts.Milliseconds / 10);
+
+                    // print out the time
+                    Console.WriteLine("time: {0}", elapsedTime);
+
+                    // exit this run
+                    return;
                 }
-                else
-                {
-                    if (speed > 96) // 96 km/h = 60 mph
-                    {
-                        // run finished, car has hit 60 mph
+            }
+        }
 
-                        TimeSpan ts = sw.Elapsed;
+        private int GetSpeed()
+        {
+            int speed = 0;
 
-                        // get the elapsed time
-                        elapsedTime = String.Format("{0:00}.{1:00}", ts.Seconds, ts.Milliseconds / 10);
+            // read in the data from the CAN
+            var task = Task.Run(() => GetCANMessage());
 
-                        // print out the time
-                        Console.WriteLine("time: {0}", elapsedTime);
+            // assign current speed, break if we can't read new data within 10 seconds
+            if (task.Wait(TimeSpan.FromSeconds(10))) msg = task.Result;
+            else return -1;
 
-                        break;
-                    }
-                }
-                
+            if (!int.TryParse(msg, out speed))
+            {
+                return -1;
             }
 
-            // stop the stopwatch
-            sw.Stop();
+            return speed;
         }
 
         private string GetCANMessage()
