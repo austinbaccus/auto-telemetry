@@ -1,0 +1,12 @@
+---
+refresh_interval: 500 # milliseconds
+enable_data_logging: true
+enable_data_streaming: true
+
+ports:
+  - COM3
+  - COM4
+  - COM5
+  - COM6
+  - COM7
+...
