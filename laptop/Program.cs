@@ -64,14 +64,23 @@ namespace Laptop
                 .WithNamingConvention(PascalCaseNamingConvention.Instance)
                 .Build();
 
-            string settingsText = File.ReadAllText(@".\config\settings.yaml");
+            string settingsText = ""; 
+
+            try
+            {
+                settingsText = File.ReadAllText(@".\config\settings.yaml");
+            }
+            catch (DirectoryNotFoundException)
+            {
+                settingsText = File.ReadAllText(@".\..\..\..\config\settings.yaml");
+            }
 
             var settings = deserializer.Deserialize<Settings>(settingsText);
 
-            ports = settings.Ports;
-            refreshInterval = settings.RefreshInterval;
-            enableDataLogging = settings.EnableDataLogging;
-            enableDataStreaming = settings.EnableDataStreaming;
+            ports = settings.ports;
+            refreshInterval = settings.refresh_interval;
+            enableDataLogging = settings.enable_data_logging;
+            enableDataStreaming = settings.enable_data_streaming;
         }
 
         static void ConfigureConsole()
@@ -167,9 +176,9 @@ namespace Laptop
 
     public class Settings
     {
-        public string[] Ports { get; set; }
-        public int RefreshInterval { get; set; }
-        public bool EnableDataLogging { get; set; }
-        public bool EnableDataStreaming { get; set; }
+        public string[] ports { get; set; }
+        public int refresh_interval { get; set; }
+        public bool enable_data_logging { get; set; }
+        public bool enable_data_streaming { get; set; }
     }
 }
